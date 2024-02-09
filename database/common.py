@@ -5,35 +5,35 @@ from matches_parser.parser import parser
 from helper_function import helper_func
 
 CREATE_TABLES_MATCHES = '''
-CREATE TABLE IF NOT EXISTS matches(tour INTEGER, date DATETIME, match TEXT, result TEXT);
+CREATE TABLE IF NOT EXISTS matches(tour INTEGER, date DATETIME, match TEXT, result TEXT, status TEXT);
 '''
 CREATE_TABLES_FORECAST = '''
-CREATE TABLE IF NOT EXISTS forecast(date DATE, match TEXT, id_player BIGINT, result TEXT);
+CREATE TABLE IF NOT EXISTS forecast(tour INTEGER, date DATETIME, match TEXT, id_player BIGINT, result TEXT);
 '''
 CREATE_TABLES_USERS = '''
-CREATE TABLE IF NOT EXISTS users(nickname TEXT, id_player BIGINT, lastPosition INTEGER DEFAULT 0, tour1 INTEGER DEFAULT 0, tour2 INTEGER DEFAULT 0,
-         tour3 INTEGER DEFAULT 0, tour4 INTEGER DEFAULT 0, tour5 INTEGER DEFAULT 0,  tour6 INTEGER DEFAULT 0, tour7 INTEGER DEFAULT 0, tour8 INTEGER DEFAULT 0, tour9 INTEGER DEFAULT 0, tour10 INTEGER DEFAULT 0, tour11 INTEGER DEFAULT 0, tour12 INTEGER DEFAULT 0, sum INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS users(nickname TEXT, id_player BIGINT, sum INTEGER DEFAULT 0, tour1 INTEGER DEFAULT 0, tour2 INTEGER DEFAULT 0,
+         tour3 INTEGER DEFAULT 0, tour4 INTEGER DEFAULT 0, tour5 INTEGER DEFAULT 0,  tour6 INTEGER DEFAULT 0, tour7 INTEGER DEFAULT 0, tour8 INTEGER DEFAULT 0);
 '''
 class MyDataBase:
     def __init__(self):
         try: 
             # self.db = sqlite3.connect('/root/rfpl23/cl_db.db', check_same_thread=False)
-            self.db = sqlite3.connect('rfpl_db.db', check_same_thread=False)
+            self.db = sqlite3.connect('cl_playoff.db', check_same_thread=False)
             self.cursor = self.db.cursor() 
             self.cursor.execute(CREATE_TABLES_FORECAST)
             self.cursor.execute(CREATE_TABLES_MATCHES)
             self.cursor.execute(CREATE_TABLES_USERS)
             matches_count = self.cursor.execute("SELECT count(*) FROM matches").fetchone()[0]
             if matches_count == 0:
-                self.update_matches()
+                self.overwrite_matches()
         except sqlite3.Error as error:
             print(error)
 
 
     def fill_matches(self, matches: Tuple) -> None:
         # Заполнение таблицы матчей
-        # matches: (tour, datetime, match, result)
-        self.cursor.executemany("INSERT INTO matches VALUES(?, ?, ?, ?)", matches)
+        # matches: (tour, datetime, match, result, status)
+        self.cursor.executemany("INSERT INTO matches VALUES(?, ?, ?, ?, ?)", matches)
         self.db.commit()
 
 
@@ -52,11 +52,11 @@ class MyDataBase:
                 f"SELECT id_player FROM users WHERE id_player = {id_player}").fetchone() is None:
             self.cursor.execute(
                 f'INSERT INTO users(id_player, nickname) VALUES("{id_player}", "{nickname}")')
-            self.cursor.execute(f'SELECT match, date FROM matches')
-            for match in self.cursor.fetchall():
-                date = match[1].split()[0]
+            matches = self.cursor.execute(f'SELECT tour, date, match FROM matches').fetchall()
+            for match in matches:
                 self.cursor.execute(
-                    f'INSERT INTO forecast VALUES("{date}", "{match[0]}", "{id_player}", "–:–")')
+                    # f'INSERT INTO forecast VALUES("{date}", "{match[0]}", "{id_player}", "–:–")')
+                    f'INSERT INTO forecast VALUES(?, ?, ?, ?, "–:–")', (*match, id_player))
             self.db.commit()
 
     def check_player_in_tournament(self, id_player: int) -> bool:
@@ -141,10 +141,9 @@ class MyDataBase:
         return sorted(self.cursor.fetchall(), key=lambda x: (int(x[1]), x[0]), reverse=True)
 
     def update_result_tour(self) -> None:
-        res = parser()  # [1, '2022-11-20 19:00', 'Катар—Эквадор', '–:–']
-        for match in res:
-            status = helper_func.get_match_status(match[1])
-            self.cursor.execute(f'UPDATE matches SET result = "{match[3]}", status = "{status}" WHERE match = "{match[2]}"')
+        res = parser()  # (1, '2022-11-20 19:00', 'Катар—Эквадор', '–:–', status)
+        for tour, date, match, result, status in res:
+            self.cursor.execute(f'UPDATE matches SET result = "{result}", status = "{status}" WHERE match = "{match}"')
         self.db.commit()
 
     def update_tournament_table(self, id_player:int, tour:int, points: int) -> None:
@@ -180,7 +179,7 @@ class MyDataBase:
         self.cursor.execute(f'SELECT nickname from users WHERE  id_player = "{id_player}"')
         return self.cursor.fetchone()[0]
 
-    def update_matches(self) -> None:
+    def overwrite_matches(self) -> None:
         # перезаписать матчи
 
         self.cursor.execute(f'DELETE from matches')
