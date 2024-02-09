@@ -11,7 +11,7 @@ ALL_FUNCTION_READY = None
 REGISTRATION_IS_OPEN = None 
 load()
 
-BOT_TOKEN=os.getenv("TEST_BOT_TOKEN")
+BOT_TOKEN=os.getenv("MAIN_BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
 
 NUMBER_OF_TOUR = 8
