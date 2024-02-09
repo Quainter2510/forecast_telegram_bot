@@ -130,6 +130,5 @@ dmypy.json
 .pyre/
 .idea/*
 .env
-rfpl_db.db
-cl_db.db
+*.db
 test.py
