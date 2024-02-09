@@ -7,7 +7,10 @@ def delete_user(message: Message) -> None:
     if str(message.chat.id) != config.ADMIN_ID:
         return
     user_id = message.text.split()[1]
-    base.delete_player(user_id)
-    bot.send_message(user_id, "Вы удалены из турнира")
-    bot.send_message(config.ADMIN_ID, "Аккаунт удален")
+    res = base.delete_player(user_id)
+    if res:
+        bot.send_message(user_id, "Вы удалены из турнира")
+        bot.send_message(config.ADMIN_ID, "Аккаунт удален")
+    else:
+        bot.send_message(config.ADMIN_ID, "Аккаунт не найден")
 
