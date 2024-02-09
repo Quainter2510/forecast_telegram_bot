@@ -18,7 +18,7 @@ class MyDataBase:
     def __init__(self):
         try: 
             # self.db = sqlite3.connect('/root/rfpl23/cl_db.db', check_same_thread=False)
-            self.db = sqlite3.connect('cl_db.db', check_same_thread=False)
+            self.db = sqlite3.connect('rfpl_db.db', check_same_thread=False)
             self.cursor = self.db.cursor() 
             self.cursor.execute(CREATE_TABLES_FORECAST)
             self.cursor.execute(CREATE_TABLES_MATCHES)
@@ -142,8 +142,9 @@ class MyDataBase:
 
     def update_result_tour(self) -> None:
         res = parser()  # [1, '2022-11-20 19:00', 'Катар—Эквадор', '–:–']
-        for m in res:
-            self.cursor.execute(f'UPDATE matches SET result = "{m[3]}" WHERE match = "{m[2]}"')
+        for match in res:
+            status = helper_func.get_match_status(match[1])
+            self.cursor.execute(f'UPDATE matches SET result = "{match[3]}", status = "{status}" WHERE match = "{match[2]}"')
         self.db.commit()
 
     def update_tournament_table(self, id_player:int, tour:int, points: int) -> None:

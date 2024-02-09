@@ -1,11 +1,19 @@
 from config_data import relations
 from typing import List
+from re import fullmatch
 
 def check_correct_tour(str: str) -> bool:
     if str in relations.HUMAN_DCT.keys():
         return True
     return False
 
+def get_match_status(str: str) -> str:
+    time = str.split()[1]
+    if time == "ок":
+        return "finished"
+    if fullmatch("\d\d:\d\d", time):
+        return "expected"
+    return "in process"
 
 def counting_of_points(one: str, two: str) -> int:
     if one == "–:–" or two == "–:–":
