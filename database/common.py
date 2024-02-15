@@ -218,6 +218,6 @@ class MyDataBase:
         if self.check_player_in_tournament(id_player) and \
             str(id_player) != config.ADMIN_ID and \
             status in config.POSSIBLE_STATUSSES:
-            self.cursor.execute(f'''UPDATE users SET status = {status} WHERE id_player = {id_player}''')
+            self.cursor.execute(f'UPDATE users SET status = "{status}" WHERE id_player = "{id_player}"')
             return True
         return False
