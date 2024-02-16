@@ -2,10 +2,9 @@ from PIL import Image, ImageDraw, ImageFont
 from config_data import config
 from image_creator.markup_table import Main_table_markup, Result_tour_markup, Points_tour_markup
 
-font = ImageFont.truetype("arial.ttf", 30)
-
 
 def drawtext(imdraw, x, y, dx, dy, text):
+    font = ImageFont.truetype("images/Fonts/consolas.ttf", size=32)
     _, _, w, h = imdraw.textbbox((0, 0), text, font = font)
     text_x = (dx - w) // 2 + x
     text_y = (dy - h) // 2 + y
