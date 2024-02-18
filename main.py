@@ -1,7 +1,6 @@
 from loader import bot
 from config_data import config
 from keyboards.reply import my_marcup
-import handlers
 
 
 if __name__ == '__main__':

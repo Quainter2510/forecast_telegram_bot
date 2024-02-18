@@ -55,8 +55,8 @@ def points_tour(data, tour):
 
     mk = Points_tour_markup()
 
-    for i, (name, pts) in enumerate(data):
-        drawtext(imdraw, mk.name_size["x"], mk.dy * (i + 1), mk.name_size["dx"], mk.dy, name)
-        drawtext(imdraw, mk.points_size["x"], mk.dy * (i + 1), mk.points_size["dx"], mk.dy, str(pts))
+    for i, (name, pts) in enumerate(data, start=1):
+        drawtext(imdraw, mk.name_size["x"], mk.dy * i, mk.name_size["dx"], mk.dy, name)
+        drawtext(imdraw, mk.points_size["x"], mk.dy * i, mk.points_size["dx"], mk.dy, str(pts))
     img.save("images/ready_tables/points_tour.png")
         
