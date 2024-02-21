@@ -127,20 +127,26 @@ class MyDataBase:
 
     def get_result_tournament(self) -> Tuple:
         # Вернуть всю таблицу пользователей
-        # nick, id, last_pos, tourN, sum
         self.cursor.execute(f'SELECT * from users')
         return self.cursor.fetchall()
 
     def get_result_tour(self, tour: int) -> Tuple:
         # Вернуть кортеж с реальными результатами матчей заданного тура
         # матч, счет
-        self.cursor.execute(f'SELECT match, result FROM matches WHERE tour = "{tour}"')
+        self.cursor.execute(f'SELECT match, result, status FROM matches WHERE tour = "{tour}"')
         return self.cursor.fetchall()
 
-    def get_points_of_tour(self, tour: int) -> Tuple:
+    def get_points_of_tour(self, tour) -> Tuple:
         # Вернуть кортеж ников и очков за тур
-        self.cursor.execute(f'SELECT nickname, {tour} FROM users')
-        return sorted(self.cursor.fetchall(), key=lambda x: (int(x[1]), x[0]), reverse=True)
+        data = self.cursor.execute(f'SELECT nickname, {tour}, id_player FROM users').fetchall()
+        ans = []
+        for nick, pts, id in data:
+            ans.append((nick, pts, self.number_of_points_per_tour_in_process(id, relations.DATES_DCT[tour])))
+        return sorted(ans, key=lambda x: (int(x[1]), x[2]), reverse=True)
+    
+    def tour_in_process(self, tour: int) -> bool:
+        statuses = self.cursor.execute(f"SELECT status FROM matches WHERE tour = {tour}").fetchall()
+        return ("in process", ) in statuses
 
     def update_result_tour(self) -> None:
         res = parser()  # (1, '2022-11-20 19:00', 'Катар—Эквадор', '–:–', status)
@@ -209,9 +215,21 @@ class MyDataBase:
     def number_of_points_per_tour(self, id_player: int, tour: int) -> int:
         result = self.get_result_tour(tour)
         ans = 0
-        for elem in result:
-            forecast = self.get_forecast_match(id_player, elem[0])
-            ans += helper_func.counting_of_points(elem[1], forecast)
+        for match, res, status in result:
+            if status == "in process":
+                continue
+            forecast = self.get_forecast_match(id_player, match)
+            ans += helper_func.counting_of_points(res, forecast)
+        return ans
+    
+    def number_of_points_per_tour_in_process(self, id_player: int, tour: int) -> int:
+        result = self.get_result_tour(tour)
+        ans = 0
+        for match, res, status in result:
+            if status != "in process":
+                continue
+            forecast = self.get_forecast_match(id_player, match)
+            ans += helper_func.counting_of_points(res, forecast)
         return ans
     
     def set_status(self, id_player: int, status: str) -> bool:

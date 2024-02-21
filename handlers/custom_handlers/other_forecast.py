@@ -27,10 +27,10 @@ def get_other_forecasts(message: Message):
         res = base.get_result_tour(tour)
         points = 0
         data = []
-        for match, result in res:
+        for match, result, status in res:
             self_res = base.get_other_forecast_match(id, match)
             points += helper_func.counting_of_points(result, self_res)
-            data.append([match, result, self_res, helper_func.counting_of_points(result, self_res)])
+            data.append([match, result, self_res, helper_func.counting_of_points(result, self_res), status])
         table_creator.result_tour(data, message.text, points, nickname)
         img = open("images/ready_tables/result_tour.png", 'rb')
         bot.send_photo(message.chat.id, img, reply_markup=my_marcup.main_menu_marcup())
