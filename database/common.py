@@ -60,7 +60,7 @@ class MyDataBase:
             self.db.commit()
 
     def check_player_in_tournament(self, id_player: int) -> bool:
-        # Проверить присмктствие игрока в таблице
+        # Проверить присутствие игрока в таблице
         if self.cursor.execute(
                 f"SELECT id_player FROM users WHERE id_player = {id_player}").fetchone() is None:
             return False
@@ -132,11 +132,11 @@ class MyDataBase:
 
     def get_result_tour(self, tour: int) -> Tuple:
         # Вернуть кортеж с реальными результатами матчей заданного тура
-        # матч, счет
+        # матч, счет, статус
         self.cursor.execute(f'SELECT match, result, status FROM matches WHERE tour = "{tour}"')
         return self.cursor.fetchall()
 
-    def get_points_of_tour(self, tour) -> Tuple:
+    def get_points_of_tour(self, tour: str) -> Tuple:
         # Вернуть кортеж ников и очков за тур
         data = self.cursor.execute(f'SELECT nickname, {tour}, id_player FROM users').fetchall()
         ans = []
