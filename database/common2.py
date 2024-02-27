@@ -2,11 +2,9 @@ from sqlalchemy import create_engine, func, or_
 from sqlalchemy.orm import sessionmaker
 from time import time 
 
-from typedDicts import *
+from helper_function.matches_dict import DataMatch
 
 from models import Base, Match, User, Forecast
-
-from hello import *
 
 def is_admin(id):
     return False
@@ -105,7 +103,6 @@ class DataBase:
         return self.session.query(User.telegram_id, User.username, User.status).all()
     
     def get_now_tour(self):
-        # t = time()
         return self.session.query(Match.tour).filter(Match.datetime > time()).first()[0]
 
     def reminder(self, tour: str):
@@ -143,23 +140,3 @@ class DataBase:
         return self.session.query(Match).filter(Match.tour == tour).count()
 
 
-
-# db = DataBase()
-# # db.add_match(parse()[-2])
-# # db.add_user(1233, "Paul")
-# # db.set_forecast(1234, 1149524, 9, 4)
-# # db.delete_user(123)
-# # print(db.get_tour_matches("Round of 16"))
-# # print(db.get_predict_match(1234, 1149524))
-# # print(db.get_palyers_info())
-# # print(db.check_user_in_tournament(1234))
-# # print(db.check_user_in_tournament(1233))
-# # print(db.check_user_in_tournament(123))
-# # print(db.get_sum_points_tour_for_user(1233, "Round of 16"))
-# # print(db.get_points_match_for_user(1234, 1149524))
-# # print(db.get_result_tour_for_user(1234, "Round of 16"))
-# # db.set_user_status(1234, "hui")
-# # print(db.get_all_tour_name())
-# # db.update_sum_points_for_user(1234)
-# # print(db.get_count_matches_in_tour("Round of 16"))
-# print(db.reminder("Round of 16"))

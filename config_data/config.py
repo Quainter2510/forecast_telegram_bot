@@ -13,6 +13,7 @@ load()
 
 BOT_TOKEN=os.getenv("MAIN_BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
+API_TOKEN = os.getenv("API_TOKEN")
 
 NUMBER_OF_TOUR = 8
 SUM_COLUMN = 3
