@@ -37,7 +37,7 @@ class MyDataBase:
         self.db.commit()
 
 
-    def complement_forecast(self, matches: Tuple) ->None:
+    def complement_forecast2(self, matches: Tuple) ->None:
         # Дополнить талбицу матчей (для плей-офф)
         for id, nick, status in self.get_all_id_player():
             for match in matches:
@@ -45,6 +45,15 @@ class MyDataBase:
                 self.cursor.execute(
                     f'INSERT INTO forecast VALUES("{date}", "{match[2]}", "{id}", "–:–")')
         self.db.commit()
+
+    def complement_forecast(self, tour: int) ->None:
+        for id, nick, status in self.get_all_id_player():
+            matches = self.cursor.execute(f'SELECT tour, date, match FROM matches').fetchall()
+            for match in matches:
+                if match[0] == tour:
+                    self.cursor.execute(
+                        f'INSERT INTO forecast VALUES(?, ?, ?, ?, "–:–")', (*match, id))
+            self.db.commit()
 
     def add_player(self, id_player: int, nickname: str) -> None:
         # Добавить игрока в таблицу и создать для него матчи
