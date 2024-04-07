@@ -9,7 +9,7 @@ def delete_user(message: Message) -> None:
     if len(message.text.split() != 2):
         bot.send_message(config.ADMIN_ID, "Некорректная команда \n /delete_user <id>")
     user_id = message.text.split()[1]
-    res = base.delete_player(user_id)
+    res = base.delete_user(user_id)
     if res:
         bot.send_message(user_id, "Вы удалены из турнира")
         bot.send_message(config.ADMIN_ID, "Аккаунт удален")

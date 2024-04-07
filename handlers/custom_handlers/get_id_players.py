@@ -10,6 +10,6 @@ def get_id_players(message: Message):
         bot.send_message(message.chat.id, "Вы не являетесь админом", reply_markup=my_marcup.main_menu_marcup())
         return
     mess = []
-    for id, nick, status in base.get_all_id_player():
+    for id, nick, status in base.get_players_info():
         mess.append(str(id) + "  " + nick + " " + status)
     bot.send_message(message.chat.id, "\n".join(mess), reply_markup=my_marcup.main_menu_marcup())

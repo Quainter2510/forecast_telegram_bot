@@ -7,7 +7,7 @@ from telebot.types import Message
 
 def show_player_list(id: int):
     msg = 'Текущий список участников: \n'
-    for num, player in enumerate(base.get_all_id_player(), start=1):
+    for num, player in enumerate(base.get_players_info(), start=1):
         msg += str(num) + " " + player[1] + '\n'
     bot.send_message(id, msg)
 
