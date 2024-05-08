@@ -180,10 +180,10 @@ class MyDataBase:
 
     def get_now_tour(self) -> int:
         # Вернуть текущий тур
-        self.cursor.execute(f"SELECT tour FROM matches WHERE date >= datetime('now','localtime')")
-        if self.cursor.fetchone() is None:
+        tour = self.cursor.execute(f"SELECT tour FROM matches WHERE date >= datetime('now','localtime')").fetchone()
+        if tour == None:
             return config.NUMBER_OF_TOUR + 1
-        return self.cursor.fetchone()[0]
+        return tour[0]
 
     def get_all_id_player(self) -> Tuple:
         # Вернуть кортеж с таблицей пользователей
