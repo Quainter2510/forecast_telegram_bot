@@ -12,13 +12,14 @@ CREATE TABLE IF NOT EXISTS forecast(tour INTEGER, date DATETIME, match TEXT, id_
 '''
 CREATE_TABLES_USERS = '''
 CREATE TABLE IF NOT EXISTS users(nickname TEXT, id_player BIGINT, status TEXT, sum INTEGER DEFAULT 0, tour1 INTEGER DEFAULT 0, tour2 INTEGER DEFAULT 0,
-         tour3 INTEGER DEFAULT 0, tour4 INTEGER DEFAULT 0, tour5 INTEGER DEFAULT 0,  tour6 INTEGER DEFAULT 0, tour7 INTEGER DEFAULT 0, tour8 INTEGER DEFAULT 0);
+         tour3 INTEGER DEFAULT 0, tour4 INTEGER DEFAULT 0, tour5 INTEGER DEFAULT 0,  tour6 INTEGER DEFAULT 0, tour7 INTEGER DEFAULT 0, tour8 INTEGER DEFAULT 0,
+         tour9 INTEGER DEFAULT 0, tour10 INTEGER DEFAULT 0, tour11 INTEGER DEFAULT 0, tour12 INTEGER DEFAULT 0, tour13 INTEGER DEFAULT 0, champ TEXT, goleador TEXT);
 '''
 class MyDataBase:
     def __init__(self):
         try: 
             # self.db = sqlite3.connect('/root/rfpl23/cl_db.db', check_same_thread=False)
-            self.db = sqlite3.connect('cl_playoff.db', check_same_thread=False)
+            self.db = sqlite3.connect('euro_cup.db', check_same_thread=False)
             self.cursor = self.db.cursor() 
             self.cursor.execute(CREATE_TABLES_FORECAST)
             self.cursor.execute(CREATE_TABLES_MATCHES)
@@ -248,3 +249,17 @@ class MyDataBase:
             self.cursor.execute(f'UPDATE users SET status = "{status}" WHERE id_player = "{id_player}"')
             return True
         return False
+    
+    def set_champ(self, id_player: int, champ: str):
+        self.cursor.execute(f'UPDATE users SET champ = "{champ}" WHERE id_player = "{id_player}"')
+        self.db.commit()
+
+    def set_goleador(self, id_player: int, goleador: str):
+        self.cursor.execute(f'UPDATE users SET goleador = "{goleador}" WHERE id_player = "{id_player}"')
+        self.db.commit()
+
+    def get_champ(self, id_player: int):
+        return self.cursor.execute(f'''SELECT champ FROM users WHERE id_player = "{id_player}"''').fetchone()[0]
+    
+    def get_goleador(self, id_player: int):
+        return self.cursor.execute(f'''SELECT goleador FROM users WHERE id_player = "{id_player}"''').fetchone()[0]

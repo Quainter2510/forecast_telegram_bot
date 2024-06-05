@@ -12,7 +12,8 @@ def main_menu_marcup() -> types.ReplyKeyboardMarkup:
                types.KeyboardButton("Посмотреть свой прогноз"),
                types.KeyboardButton("Обновить"),
                types.KeyboardButton("Сброс"),
-               types.KeyboardButton("Посмотреть прогноз всех участников"))
+               types.KeyboardButton("Посмотреть прогноз всех участников"),
+               types.KeyboardButton("Чемпион+бомбардир"))
     return marcup
 
 

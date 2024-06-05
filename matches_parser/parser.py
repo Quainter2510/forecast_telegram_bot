@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 from helper_function.datetime_func import datetime_transform
 from helper_function.helper_func import get_match_status
 from config_data import config
+import pprint
+from itertools import groupby
 
-overwrite = {"* * Арсенал Лондон—Порту": ("Арсенал Лондон—Порту", "1:0"),
-             "* * Атлетико—Интер": ("Атлетико—Интер", "2:1"),
-             "Манчестер Сити—Реал Мадрид": ("Манчестер Сити—Реал Мадрид", "1:1")}
+overwrite = {}
 
 
 def parser():
@@ -14,10 +14,15 @@ def parser():
     soup = BeautifulSoup(response.text, 'html.parser')
     quotes = soup.find('div', class_="cal_sort_tour").find_all("div")
     res = []
+    tour = 0
+    last = None
     for i, quote in enumerate(quotes):
+        
         datetime = quote.find_all("li")[0].text
         match = quote.find_all("li")[1].text
         result = quote.find_all("a")[0].text
+
+
 
         if match in overwrite:
             result = overwrite[match][1]
@@ -25,5 +30,15 @@ def parser():
 
         datetime = datetime_transform(datetime)
         status = get_match_status(datetime)
-        res.append((i // config.COUNT_MATCHES_IN_TOUR + 1, datetime, match, result, status))
-    return res
+        res.append((datetime, match, result, status))
+
+    res.sort()
+    ress = []
+    for elem in res:
+        if elem[0].split()[0] != last:
+            tour += 1
+            last = elem[0].split()[0]
+        ress.append((tour, *elem))
+    # pprint.pprint(ress)
+
+    return ress
