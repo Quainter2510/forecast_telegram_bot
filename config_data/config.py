@@ -23,8 +23,8 @@ NICKNAME_COLUMN = 0
 START_SHOW_TOUR_COLUMN = 4
 COUNT_TOUR_IN_TABLE = 13
 
-image_width = 1280
-image_height = 720
+image_width = 1920
+image_height = 1080
 
  
 POSSIBLE_STATUSSES = ["superadmin", "admin", "player", "owe"]
