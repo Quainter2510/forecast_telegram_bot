@@ -7,7 +7,7 @@ from . import get_main_table
 from . import get_my_forecast
 from . import get_result_tour
 from . import other_forecast
-from . import reminder
+from . import reminders
 from . import update
 from . import get_id_players
 from . import set_status
