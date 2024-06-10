@@ -8,6 +8,6 @@ import handlers
 bot = TeleBot(token=config.BOT_TOKEN)
 base = MyDataBase()
 
-handlers.custom_handlers.reminder.reminder()
+# handlers.custom_handlers.reminder.reminder()
 
 
