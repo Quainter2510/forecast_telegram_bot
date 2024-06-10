@@ -17,8 +17,9 @@ def start(message: Message):
     bot.register_next_step_handler(message, set_nickname)
 
 def set_nickname(message: Message):
-    bot.send_message(message.chat.id, config.start_info_msg)
+    # bot.send_message(message.chat.id, config.start_info_msg)
     bot.send_message(config.ADMIN_ID, "Присоединился " + str(message.chat.id) + " " + message.text)
+    bot.send_message(config.ADMIN_ID2, "Присоединился " + str(message.chat.id) + " " + message.text)
 
     user_id = message.chat.id
     user_nickname = message.text

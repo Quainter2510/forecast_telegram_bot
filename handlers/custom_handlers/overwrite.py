@@ -6,6 +6,6 @@ from matches_parser import parser
 
 @bot.message_handler(commands=["overwrite"])
 def complement(message: Message) -> None:
-    if str(message.chat.id) != config.ADMIN_ID:
+    if str(message.chat.id) not in (config.ADMIN_ID, config.ADMIN_ID2):
         return
     base.overwrite_matches()

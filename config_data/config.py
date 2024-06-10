@@ -13,6 +13,7 @@ load()
 
 BOT_TOKEN=os.getenv("MAIN_BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
+ADMIN_ID2 = os.getenv("ADMIN_ID2")
 
 NUMBER_OF_TOUR = 13
 SUM_COLUMN = 3

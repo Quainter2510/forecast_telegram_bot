@@ -6,7 +6,7 @@ from matches_parser import parser
 
 @bot.message_handler(commands=["complement"])
 def complement(message: Message) -> None:
-    if str(message.chat.id) != config.ADMIN_ID:
+    if str(message.chat.id) not in (config.ADMIN_ID, config.ADMIN_ID2):
         return
     if len(message.text.split()) != 2:
         bot.send_message(message.chat.id, "не указан тур", reply_markup=my_marcup.main_menu_marcup())

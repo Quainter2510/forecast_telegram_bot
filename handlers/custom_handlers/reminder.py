@@ -9,3 +9,4 @@ def reminder(message: Message):
     for elem in players:
         bot.send_message(elem[0], "Матчи скоро начнутся. Не забудьте сделать прогноз")
         bot.send_message(config.ADMIN_ID, base.get_nickname_player(elem[0]) + " не сделал прогноз")
+        bot.send_message(config.ADMIN_ID2, base.get_nickname_player(elem[0]) + " не сделал прогноз")
