@@ -17,7 +17,7 @@ def main_table(table, tour, diff):
     mk = Main_table_markup()
 
     for i in range(config.NUMBER_OF_PLAYERS):
-        drawtext(imdraw, mk.offset_size["x"], mk.head_size + mk.dy * i, mk.offset_size["dx"], mk.dy, str(diff[str(table[i][0])]))
+        # drawtext(imdraw, mk.offset_size["x"], mk.head_size + mk.dy * i, mk.offset_size["dx"], mk.dy, str(diff[str(table[i][0])]))
         drawtext(imdraw, mk.name_size["x"], mk.head_size + mk.dy * i, mk.name_size["dx"], mk.dy, str(table[i][0]))
 
         for j in range(config.COUNT_TOUR_IN_TABLE):

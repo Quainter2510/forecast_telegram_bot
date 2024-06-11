@@ -12,16 +12,17 @@ def show_player_list(id: int):
     bot.send_message(id, msg)
 
 def measure_difference(res, now_tour):
-    ans = {}
-    ss1 = sorted(res, key=lambda x: sum(x[config.TOUR1_COLUMN:now_tour - 1]))
-    sss1 = {player[config.NICKNAME_COLUMN]: i for i, player in enumerate(ss1)}
-    ss2 = sorted(res, key=lambda x: sum(x[config.TOUR1_COLUMN:now_tour - 2]))
-    sss2 = {player[config.NICKNAME_COLUMN]: i for i, player in enumerate(ss2)}
+    pass
+    # ans = {}
+    # ss1 = sorted(res, key=lambda x: sum(x[config.TOUR1_COLUMN:now_tour - 1]))
+    # sss1 = {player[config.NICKNAME_COLUMN]: i for i, player in enumerate(ss1)}
+    # ss2 = sorted(res, key=lambda x: sum(x[config.TOUR1_COLUMN:now_tour - 2]))
+    # sss2 = {player[config.NICKNAME_COLUMN]: i for i, player in enumerate(ss2)}
 
-    for player in res:
-        nick = player[config.NICKNAME_COLUMN]
-        ans[nick] = sss1[nick] - sss2[nick]
-    return ans
+    # for player in res:
+    #     nick = player[config.NICKNAME_COLUMN]
+    #     ans[nick] = sss1[nick] - sss2[nick]
+    # return ans
 
     
     
