@@ -4,7 +4,7 @@ from image_creator.markup_table import Main_table_markup, Result_tour_markup, Po
 
 
 def drawtext(imdraw: ImageDraw.ImageDraw, x, y, dx, dy, text, color_fill="white"):
-    font = ImageFont.truetype("images/Fonts/consolas.ttf", size=32)
+    font = ImageFont.truetype("images/Fonts/consolas.ttf", size=36)
     _, _, w, h = imdraw.textbbox((0, 0), text, font = font)
     text_x = (dx - w) // 2 + x
     text_y = (dy - h) // 2 + y
