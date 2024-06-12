@@ -11,6 +11,6 @@ def reminder(message: Message):
     bot.send_message(config.ADMIN_ID, "owe start")
     players = base.debtor()
     for elem in players:
-        # bot.send_message(elem[0], msg)
+        bot.send_message(elem[0], msg)
         bot.send_message(config.ADMIN_ID, base.get_nickname_player(elem[0]) + " не оплатил")
     bot.send_message(config.ADMIN_ID, "owe finish")
