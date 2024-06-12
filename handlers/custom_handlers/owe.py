@@ -14,3 +14,16 @@ def reminder(message: Message):
         bot.send_message(elem[0], msg)
         bot.send_message(config.ADMIN_ID, base.get_nickname_player(elem[0]) + " не оплатил")
     bot.send_message(config.ADMIN_ID, "owe finish")
+
+
+@bot.message_handler(commands=["owe_player"])
+def reminder(message: Message):
+    bot.send_message(config.ADMIN_ID, "owe start")
+    if str(message.chat.id) != config.ADMIN_ID:
+        return
+    if len(message.text.split()) != 2:
+        bot.send_message(config.ADMIN_ID, "Некорректная команда \n /owe_player <id>")
+    user_id = message.text.split()[1]
+    bot.send_message(user_id, msg)
+    bot.send_message(config.ADMIN_ID, base.get_nickname_player(user_id) + " не оплатил")
+    bot.send_message(config.ADMIN_ID, "owe finish")
