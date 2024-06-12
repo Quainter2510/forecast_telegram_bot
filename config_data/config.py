@@ -8,21 +8,27 @@ else:
     load_dotenv()
 
 ALL_FUNCTION_READY = None 
+REGISTRATION_IS_OPEN = None 
 load()
 
-BOT_TOKEN=os.getenv("TEST_BOT_TOKEN")
+BOT_TOKEN=os.getenv("MAIN_BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
 
-NUMBER_OF_TOUR = 30
-SUM_COLUMN = 33
-NUMBER_OF_PLAYERS = 14
-COUNT_MATCHES_IN_TOUR = 8
-TOUR1_COLUMN = 3
+NUMBER_OF_TOUR = 8
+SUM_COLUMN = 3
+NUMBER_OF_PLAYERS = 7
+COUNT_MATCHES_IN_TOUR = 4
+TOUR1_COLUMN = 4
 NICKNAME_COLUMN = 0 
-START_SHOW_TOUR_COLUMN = 3
-COUNT_TOUR_IN_TABLE = 15
+START_SHOW_TOUR_COLUMN = 4
+COUNT_TOUR_IN_TABLE = 8
+
+image_width = 1280
+image_height = 720
+
  
+POSSIBLE_STATUSSES = ["superadmin", "admin", "player", "owe"]
 
 start_info_msg = """Для участия необходимо перевести 1200 рублей Александрову Павлу на номер 89205450183 (сбер) с указанием никнейма в комментарии. После подтверждения перевода вы будете добавлены в турнир."""
 
-URL = 'https://www.livecup.run/football/russia/premier-league/calendar-tour/'
+URL = 'https://www.livecup.run/football/champions-league/calendar-playoff/'

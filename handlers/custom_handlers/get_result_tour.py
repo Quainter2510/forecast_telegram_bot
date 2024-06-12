@@ -24,13 +24,14 @@ def check_result_tour(message: Message):
     points = 0
     data = []
     currtour = relations.HUMAN_DCT[message.text]
-    for match in res:
-        self_res = base.get_forecast_match(message.chat.id, match[0])
-        points += helper_func.counting_of_points(match[1], self_res)
-        data.append([match[0], match[1], self_res, helper_func.counting_of_points(match[1], self_res)])
+    for match, res, status in res:
+        self_res = base.get_forecast_match(message.chat.id, match)
+        points += helper_func.counting_of_points(res, self_res)
+        data.append([match, res, self_res, helper_func.counting_of_points(res, self_res), status])
     table_creator.result_tour(data, message.text, points)
     img = open("images/ready_tables/result_tour.png", 'rb')
     bot.send_photo(message.chat.id, img, reply_markup=my_marcup.main_menu_marcup())
-    table_creator.points_tour(base.get_points_of_tour(relations.TOUR_DCT[currtour]), relations.TOUR_DCT[currtour])
+
+    table_creator.points_tour(base.get_points_of_tour(relations.TOUR_DCT[currtour]), base.tour_in_process(relations.HUMAN_DCT[message.text]))
     img = open("images/ready_tables/points_tour.png", 'rb')
     bot.send_photo(message.chat.id, img, reply_markup=my_marcup.main_menu_marcup())

@@ -16,7 +16,7 @@ def get_match_status(str: str) -> str:
     return "in process"
 
 def counting_of_points(one: str, two: str) -> int:
-    if one == "–:–" or two == "–:–":
+    if "-:-" in (one, two) or "–:–" in (one, two):
         return 0
     one = list(map(int, one.split(":")))
     two = list(map(int, two.split(":")))
