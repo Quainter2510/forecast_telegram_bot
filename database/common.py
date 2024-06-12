@@ -214,6 +214,11 @@ class MyDataBase:
             AND match = "{match[0]}"''')
             ans += [*self.cursor.fetchall()]
         return list(set(ans))
+    
+    def debtor(self) -> List[int]:
+        # Должники
+        return self.cursor.execute(f'SELECT id_player FROM users WHERE status = "owe"').fetchall()
+        
 
     def clear(self) -> None:
         # Удалить бд
