@@ -8,7 +8,8 @@ from telebot.types import Message
 def set_settings(message: Message):
     if str(message.chat.id) != config.ADMIN_ID:
         return
-    setup = json.load(settings)
+    with open("settings.json", "r") as settings:
+        setup = json.load(settings)
     mess = message.text.split()
     if len(mess) < 3:
             bot.send_message(message.chat.id, "Параметр не найден \n /settings <setting> <value>")
@@ -24,4 +25,5 @@ def set_settings(message: Message):
         setup[setting] = value
     with open("settings.json", "w") as settings:
         json.dump(setup, settings)
+        bot.send_message(message.chat.id, "Параметр изменен")
     load()
