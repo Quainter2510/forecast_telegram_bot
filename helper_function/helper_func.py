@@ -21,11 +21,11 @@ def counting_of_points(one: str, two: str) -> int:
     one = list(map(int, one.split(":")))
     two = list(map(int, two.split(":")))
     if one == two:
-        return 3
+        return 5
     elif one[0] - two[0] == one[1] - two[1]:
-        return 2
+        return 3
     elif one[0] > one[1] and two[0] > two[1] or one[0] < one[1] and two[0] < two[1]:
-        return 1
+        return 2
     return 0
 
 def check_correct_score(score: List[int]) -> bool:
