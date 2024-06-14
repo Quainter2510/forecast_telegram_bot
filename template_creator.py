@@ -42,24 +42,25 @@ def create_template_points_tour():
 
 def create_template_result_tour():
     mk = Result_tour_markup()
-    img = Image.open("images/table_templates/dark_background.png")
+    img = Image.open("images/table_templates/dark_background2.png")
     imdraw = ImageDraw.Draw(img)
+    image_height = 1080
     imdraw.line((0, mk.head_size, config.image_width, mk.head_size), fill="white", width=wide_line)    
-    imdraw.line((0, config.image_height - mk.head_size, config.image_width, config.image_height - mk.head_size), fill="white", width=wide_line) 
+    imdraw.line((0, image_height - mk.head_size, config.image_width, image_height - mk.head_size), fill="white", width=wide_line) 
     imdraw.line((0, mk.head_size + mk.dy, config.image_width, mk.head_size + mk.dy), fill="white", width=wide_line)  
 
     for i in range(1, config.COUNT_MATCHES_IN_TOUR + 1):
         imdraw.line((0, mk.head_size +mk.dy * i, config.image_width, mk.head_size + mk.dy * i), fill="white", width=thin_line)  
 
-    imdraw.line((mk.result_size["x"], mk.head_size, mk.result_size["x"], config.image_height - mk.total_size), fill="white", width=wide_line) 
-    imdraw.line((mk.forecast_size["x"], mk.head_size, mk.forecast_size["x"], config.image_height - mk.total_size), fill="white", width=wide_line) 
-    imdraw.line((mk.points_size["x"], mk.head_size, mk.points_size["x"], config.image_height), fill="white", width=wide_line) 
+    imdraw.line((mk.result_size["x"], mk.head_size, mk.result_size["x"], image_height - mk.total_size), fill="white", width=wide_line) 
+    imdraw.line((mk.forecast_size["x"], mk.head_size, mk.forecast_size["x"], image_height - mk.total_size), fill="white", width=wide_line) 
+    imdraw.line((mk.points_size["x"], mk.head_size, mk.points_size["x"], image_height), fill="white", width=wide_line) 
 
     drawtext(imdraw, mk.match_size["x"], mk.head_size, mk.match_size["dx"], mk.dy, "Матч")
     drawtext(imdraw, mk.result_size["x"], mk.head_size, mk.result_size["dx"], mk.dy, "Результат")
     drawtext(imdraw, mk.forecast_size["x"], mk.head_size, mk.forecast_size["dx"], mk.dy, "Прогноз")
     drawtext(imdraw, mk.points_size["x"], mk.head_size, mk.points_size["dx"], mk.dy, "Очки")
-    drawtext(imdraw, mk.match_size["x"], config.image_height - mk.total_size, mk.points_size["x"], mk.total_size, "Итог за тур")
+    drawtext(imdraw, mk.match_size["x"], image_height - mk.total_size, mk.points_size["x"], mk.total_size, "Итог за тур")
 
     # img.show()
     img.save("images/table_templates/template_result_tour.png", "png")

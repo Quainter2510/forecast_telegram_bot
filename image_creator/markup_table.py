@@ -24,7 +24,7 @@ class Result_tour_markup:
     def __init__(self):
         self.head_size = 150
         self.total_size = 150
-        self.dy = (config.image_height - self.head_size - self.total_size) / (config.COUNT_MATCHES_IN_TOUR + 1)
+        self.dy = (1080 - self.head_size - self.total_size) / (config.COUNT_MATCHES_IN_TOUR + 1)
         self.match_size = {"x": 0, "dx": 900}
         self.result_size = {"x": 900, "dx": 400}
         self.forecast_size = {"x": 1300, "dx": 400}

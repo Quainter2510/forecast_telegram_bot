@@ -16,7 +16,7 @@ ADMIN_ID = os.getenv("ADMIN_ID")
 
 NUMBER_OF_TOUR = 13
 SUM_COLUMN = 3
-NUMBER_OF_PLAYERS = 7
+NUMBER_OF_PLAYERS = 40
 COUNT_MATCHES_IN_TOUR = 4
 TOUR1_COLUMN = 4
 NICKNAME_COLUMN = 0 
@@ -24,7 +24,7 @@ START_SHOW_TOUR_COLUMN = 4
 COUNT_TOUR_IN_TABLE = 13
 
 image_width = 1920
-image_height = 1080
+image_height = 2000
 
  
 POSSIBLE_STATUSSES = ["superadmin", "admin", "player", "owe"]

@@ -36,13 +36,13 @@ def result_tour(data, tour, points, nickname=""):
     imdraw = ImageDraw.Draw(img)
 
     mk = Result_tour_markup()
-
+    image_height = 1080
     if nickname == "":
         msg = f'Итог {tour}'
     else:
         msg = f'Прогноз {tour} от {nickname}'
     drawtext(imdraw, 0, 0, config.image_width, mk.head_size, msg)
-    drawtext(imdraw, mk.points_size["x"], config.image_height - mk.total_size, mk.points_size["dx"], mk.total_size, str(points))
+    drawtext(imdraw, mk.points_size["x"], image_height - mk.total_size, mk.points_size["dx"], mk.total_size, str(points))
     for i, (match, res, forecast, pts, status) in enumerate(data, start=1):
         color = "red" if status == "in process" else "white"
         drawtext(imdraw, mk.match_size["x"], mk.head_size + mk.dy * i, mk.match_size["dx"], mk.dy, match, color)
