@@ -35,7 +35,7 @@ def check_result_tournament(message: Message) -> None:
     
     res = base.get_result_tournament()
     now_tour = base.get_now_tour()
-    diff = measure_difference(res, now_tour)
+    diff = 0
     res.sort(key=lambda x: x[config.SUM_COLUMN], reverse=True)
     ans = []
     # player: nick, id, last_pos, tourN, sum
