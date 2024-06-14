@@ -9,7 +9,7 @@ from telebot.types import Message
 def show_goleador_list(id: int):
     msg = 'Список прогнозов: \n'
     for num, player in enumerate(base.get_all_id_player(), start=1):
-        msg += f"{num} {base.get_nickname_player(player)}: {base.get_champ(player)} | {base.get_goleador(player)}"
+        msg += f"{num} {player[1]}:\t\t {base.get_champ(player[0])} | {base.get_goleador(player[0])}\n"
     bot.send_message(id, msg)
 
 
