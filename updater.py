@@ -13,7 +13,5 @@ def update():
 
 while True:
     if datetime.datetime.now().minute % 2:
-        bot.send_message(ADMIN_ID, "updater")
-        print("update")
         update()
-        time.sleep(10)
+        time.sleep(70)
