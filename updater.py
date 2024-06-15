@@ -1,6 +1,8 @@
 from loader import base
 import datetime
 import time
+from loader import bot
+from config_data.config import ADMIN_ID
 
 def update():
     base.update_result_tour()
@@ -11,6 +13,7 @@ def update():
 
 while True:
     if datetime.datetime.now().minute % 2:
+        bot.send_message(ADMIN_ID, "updater")
         print("update")
         update()
         time.sleep(10)
