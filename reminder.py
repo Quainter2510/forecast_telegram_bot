@@ -16,8 +16,9 @@ def reminder():
     bot.send_message(ADMIN_ID, "reminder finish")
     bot.send_message(ADMIN_ID2, "reminder finish")
 
-rem = datetime.datetime.now().replace(hour=15, minute=0, second=0)
 while True:
-    if datetime.datetime.now() == rem:
+    if datetime.datetime.now().day in (15, 16, 17, 19, 20, 21, 22) and datetime.datetime.now().hour == 15 or \
+        datetime.datetime.now().day in (18, 25, 26, 29, 30, 1, 2, 5, 6) and datetime.datetime.now().hour == 18 or \
+        datetime.datetime.now().day in (23, 24, 14, 10, 9) and datetime.datetime.now().hour == 21:
         reminder()
         time.sleep(10)
