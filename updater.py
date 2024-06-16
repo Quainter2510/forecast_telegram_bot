@@ -10,6 +10,6 @@ def update():
         base.update_tournament_table(id[0], currtour, base.number_of_points_per_tour(id[0], currtour))
 
 while True:
-    if datetime.datetime.now().min % 3 == 0:
+    if datetime.datetime.now().minute % 2 == 0:
         update()
         time.sleep(70)
