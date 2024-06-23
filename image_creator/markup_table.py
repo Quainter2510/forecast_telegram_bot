@@ -5,9 +5,9 @@ class Main_table_markup:
         self.head_size = 80
         self.offset_size = {"x": 0, "dx": 0}
         self.place_size = {"x": 0, "dx": 80}
-        self.name_size = {"x": 80, "dx": 400}
-        self.tours_size = {"x": 480, "dx": 1310}
-        self.sum_size = {"x": 1790, "dx": 130}
+        self.name_size = {"x": 80, "dx": 540}
+        self.tours_size = {"x": 620, "dx": 1180}
+        self.sum_size = {"x": 1800, "dx": 120}
         self.dy = (config.image_height - self.head_size) / config.NUMBER_OF_PLAYERS
         self.tours_dx = self.tours_size["dx"] / config.COUNT_TOUR_IN_TABLE
 
