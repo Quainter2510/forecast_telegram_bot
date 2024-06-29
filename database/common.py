@@ -25,8 +25,8 @@ class MyDataBase:
             self.cursor.execute(CREATE_TABLES_MATCHES)
             self.cursor.execute(CREATE_TABLES_USERS)
             matches_count = self.cursor.execute("SELECT count(*) FROM matches").fetchone()[0]
-            if matches_count == 0:
-                self.overwrite_matches()
+            # if matches_count == 0:
+            #     self.overwrite_matches()
         except sqlite3.Error as error:
             print(error)
 

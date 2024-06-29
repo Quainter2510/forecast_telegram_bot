@@ -1,6 +1,6 @@
 from PIL import Image, ImageEnhance, ImageDraw, ImageFont
 from image_creator.markup_table import Main_table_markup, Result_tour_markup, Points_tour_markup
-from config_data import config
+from config_data import config, relations
 
 
 dark_factor = 0.1
@@ -82,8 +82,11 @@ def craete_template_main_table():
     tours_dx = mk.tours_size["dx"] / config.NUMBER_OF_TOUR
 
     for i in range(1, config.NUMBER_OF_TOUR + 1):
+        tour_name = list(relations.HUMAN_DCT.keys())[i-1]
+        tour_name = tour_name.replace(" ", "\n")
         imdraw.line((mk.tours_size["x"] + tours_dx * i, 0, mk.tours_size["x"] + tours_dx * i, config.image_height))
-        drawtext(imdraw, mk.tours_size["x"] + tours_dx * (i - 1), 0, tours_dx, mk.head_size, "День\n" + str(i))
+        # drawtext(imdraw, mk.tours_size["x"] + tours_dx * (i - 1), 0, tours_dx, mk.head_size, "День\n" + str(i))
+        drawtext(imdraw, mk.tours_size["x"] + tours_dx * (i - 1), 0, tours_dx, mk.head_size, tour_name)
 
     drawtext(imdraw, mk.place_size["x"], 0, mk.place_size["dx"], mk.head_size, "№")
     drawtext(imdraw, mk.name_size["x"], 0, mk.name_size["dx"], mk.head_size, "Имя")

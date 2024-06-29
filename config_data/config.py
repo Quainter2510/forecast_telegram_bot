@@ -15,14 +15,14 @@ BOT_TOKEN=os.getenv("MAIN_BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
 ADMIN_ID2 = os.getenv("ADMIN_ID2")
 
-NUMBER_OF_TOUR = 13
-SUM_COLUMN = 3
+NUMBER_OF_TOUR = 10
+SUM_COLUMN = 19
 NUMBER_OF_PLAYERS = 14
 COUNT_MATCHES_IN_TOUR = 4
-TOUR1_COLUMN = 4
+TOUR1_COLUMN = 3
 NICKNAME_COLUMN = 0 
-START_SHOW_TOUR_COLUMN = 4
-COUNT_TOUR_IN_TABLE = 13
+START_SHOW_TOUR_COLUMN = 3
+COUNT_TOUR_IN_TABLE = 10
 
 image_width = 1920
 image_height = 1080
@@ -32,4 +32,4 @@ POSSIBLE_STATUSSES = ["superadmin", "admin", "player", "owe"]
 
 start_info_msg = """Для участия необходимо перевести 1200 рублей Александрову Павлу на номер 89205450183 (сбер) с указанием никнейма в комментарии. После подтверждения перевода вы будете добавлены в турнир."""
 
-URL = 'https://www.livecup.run/football/euro-2024/calendar-group/'
+URL = 'https://www.livecup.run/football/euro-2024/calendar-playoff/'
