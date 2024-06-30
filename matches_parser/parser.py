@@ -6,7 +6,7 @@ from config_data import config
 import pprint
 from itertools import groupby
 
-overwrite = {}
+overwrite = {'Англия—Словакия': "1:1"}
 
 
 def parser():
@@ -25,8 +25,8 @@ def parser():
 
 
         if match in overwrite:
-            result = overwrite[match][1]
-            match = overwrite[match][0]
+            result = overwrite[match]
+            # match = overwrite[match][0]
 
         datetime = datetime_transform(datetime)
         status = get_match_status(datetime)

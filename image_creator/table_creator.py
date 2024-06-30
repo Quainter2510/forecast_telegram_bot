@@ -21,7 +21,7 @@ def main_table(table, tour, diff):
         drawtext(imdraw, mk.name_size["x"], mk.head_size + mk.dy * i, mk.name_size["dx"], mk.dy, str(table[i][0]))
 
         for j in range(config.COUNT_TOUR_IN_TABLE):
-            if j < tour or j == len(table[0]) - 1:
+            if j <= tour or j == len(table[0]) - 1:
                 msg = str(table[i][j + 1])
             else:
                 msg = "-"
