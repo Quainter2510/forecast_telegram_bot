@@ -74,30 +74,30 @@
 # }
 
 TOUR_DCT = {
-    0: "tour1",
-    1: "tour2",
-    2: "tour3",
-    3: "tour4",
-    4: "tour5",
-    5: "tour6",
-    6: "tour7",
-    7: "tour8",
-    8: "tour9",
-    9: "tour10"
+    1: "tour1",
+    2: "tour2",
+    3: "tour3",
+    4: "tour4",
+    5: "tour5",
+    6: "tour6",
+    7: "tour7",
+    8: "tour8",
+    9: "tour9",
+    10: "tour10"
 
 }
 
 DATES_DCT = {
-    "tour1": 0,
-    "tour2": 1,
-    "tour3": 2,
-    "tour4": 3,
-    "tour5": 4,
-    "tour6": 5,
-    "tour7": 6,
-    "tour8": 7,
-    "tour9": 8,
-    "tour10": 9
+    "tour1": 1,
+    "tour2": 2,
+    "tour3": 3,
+    "tour4": 4,
+    "tour5": 5,
+    "tour6": 6,
+    "tour7": 7,
+    "tour8": 8,
+    "tour9": 9,
+    "tour10": 10
 
 }
 
