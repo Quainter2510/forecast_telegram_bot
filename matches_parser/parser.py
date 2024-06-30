@@ -6,7 +6,7 @@ from config_data import config
 import pprint
 from itertools import groupby
 
-overwrite = {}
+overwrite = {'Англия—Словакия': "1:1"}
 
 
 def parser():
@@ -39,6 +39,6 @@ def parser():
             tour += 1
             last = elem[0].split()[0]
         ress.append((tour, *elem))
-    # pprint.pprint(ress)
+    pprint.pprint(ress)
 
     return ress
