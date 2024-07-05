@@ -183,7 +183,7 @@ class MyDataBase:
         # Вернуть текущий тур
         tour = self.cursor.execute(f"SELECT tour FROM matches WHERE date >= datetime('now','localtime')").fetchone()
         if tour == None:
-            return self.cursor.execute(f"SELECT MAX(tour) FROM matches").fetchone()
+            return self.cursor.execute(f"SELECT MAX(tour) FROM matches").fetchone()[0]
         return tour[0]
 
     def get_all_id_player(self) -> Tuple:
