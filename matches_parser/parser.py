@@ -6,7 +6,8 @@ from config_data import config
 import pprint
 from itertools import groupby
 
-overwrite = {'* * Англия—Словакия': ["Англия—Словакия", "1:1"]}
+overwrite = {'* * Англия—Словакия': ["Англия—Словакия", "1:1"],
+             '* * Испания—Германия': ["Испания—Германия", "1:1"]}
 
 
 def parser():
