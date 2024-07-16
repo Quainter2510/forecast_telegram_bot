@@ -13,8 +13,16 @@ def start(message: Message):
     if not config.REGISTRATION_IS_OPEN:
         bot.send_message(message.chat.id, "Вы не можете принять участие в турнире")
         return
-    bot.send_message(message.chat.id, "Введите имя, которое будет выводиться в таблицу")
-    bot.register_next_step_handler(message, set_nickname)
+    bot.send_message(message.chat.id, "Введите пароль")
+    bot.register_next_step_handler(message, get_password)
+
+def get_password(message: Message):
+    if message.text == "2007":
+        bot.send_message(message.chat.id, "Введите имя, которое будет выводиться в таблицу")
+        bot.register_next_step_handler(message, set_nickname)
+    else:
+        bot.send_message(message.chat.id, "Неверный пароль")
+        bot.register_next_step_handler(message, get_password)
 
 def set_nickname(message: Message):
     bot.send_message(message.chat.id, config.start_info_msg)

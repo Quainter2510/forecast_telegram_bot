@@ -42,7 +42,7 @@ def create_template_points_tour():
 
 def create_template_result_tour():
     mk = Result_tour_markup()
-    img = Image.open("images/table_templates/dark_background2.png")
+    img = Image.open("images/table_templates/dark_background.png")
     imdraw = ImageDraw.Draw(img)
     image_height = 1080
     imdraw.line((0, mk.head_size, config.image_width, mk.head_size), fill="white", width=wide_line)    
