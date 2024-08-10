@@ -1,12 +1,12 @@
 import requests
 from http import HTTPStatus
 from pprint import pprint
-from helper_function.matches_dict import DataMatch
 from config_data.config import API_TOKEN
+from helper_function.matches_dict import DataMatch
 
 url = "https://v3.football.api-sports.io/fixtures"
 
-def parse(id_league=2, season=2023):
+def parse(token, id_league=2, season=2023):
     tokens = iter([API_TOKEN])
     headers = {
         'x-rapidapi-key': next(tokens),
@@ -40,7 +40,7 @@ def parse(id_league=2, season=2023):
         all_matches.append(data_match)
     return all_matches
 
-# res = parse()[-1]
+res = parse()[-1]
 
-# pprint(parse())
+pprint(parse())
 

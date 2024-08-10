@@ -78,7 +78,7 @@ class DataBase:
         self.session.commit()
 
     def get_all_matches_id(self) -> List[Tuple[int]]:
-        """Вернуть все id матчей тура
+        """Вернуть все id матчей 
         [(match_id,), ...]"""
         return self.session.query(Match.match_id).all()
     
